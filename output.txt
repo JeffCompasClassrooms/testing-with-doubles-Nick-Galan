@@ -1,0 +1,73 @@
+platform linux -- Python 3.10.12, pytest-8.4.1, pluggy-1.6.0
+rootdir: /root/testing-with-doubles-Nick-Galan
+plugins: mock-3.15.1, describe-2.2.0, spec-5.0.0
+collected 5 items                                                                                                                          
+
+test_mydb.py:
+
+MyDB:
+
+  Init:
+
+    When the database file does not exist:
+      ✓ It creates an empty database
+
+    When the database file exists:
+      ✓ It assigns the fname attribute
+
+  LoadStrings:
+    ✓ It loads and returns an array from a file
+
+  SaveString:
+    ✓ It appends a string to the list and saves
+
+  SaveStrings:
+    ✓ It saves an array to a file
+
+============================================================ 5 passed in 0.22s ===============
+
+root@LAPTOP-V40JQ2PU:~/testing-with-doubles-Nick-Galan# pytest --spec test_squirrel_server.py
+=========================================================== test session starts ============================================================
+platform linux -- Python 3.10.12, pytest-8.4.1, pluggy-1.6.0
+rootdir: /root/testing-with-doubles-Nick-Galan
+plugins: mock-3.15.1, describe-2.2.0, spec-5.0.0
+collected 18 items                                                                                                                         
+
+test_squirrel_server.py:
+
+SquirrelServerHandler:
+
+  DELETE requests:
+    ✓ It deletes a squirrel if it exists
+    ✓ It returns 204 on successful delete
+    ✓ It returns 404 if squirrel to delete is not found
+
+  GET requests:
+
+    All squirrels:
+      ✓ It queries db for squirrels
+      ✓ It returns 200 status code
+      ✓ It sends json content type header
+      ✓ It calls end headers
+      ✓ It returns response body with squirrels json data
+
+    Single squirrel:
+      ✓ It queries db for one squirrel
+      ✓ It returns 200 if squirrel found
+      ✓ It returns 404 if squirrel not found
+
+  POST requests:
+    ✓ It queries db to create squirrel with given data
+    ✓ It returns 201 on creation
+
+  PUT requests:
+    ✓ It updates a squirrel if it exists
+    ✓ It returns 204 on successful update
+    ✓ It returns 404 if squirrel to update is not found
+
+  Bad paths:
+    ✓ It returns 404 for post to an id
+    ✓ It returns 404 for put without an id
+
+============================================================ 18 passed in 0.36s ============================================================
+root@LAPTOP-V40JQ2PU:~/testing-with-doubles-Nick-Galan# 
